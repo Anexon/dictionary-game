@@ -12,8 +12,7 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-    const isTheSame = await compare(pass, user.password);
-    console.log('Pero será lo mismo?: ', isTheSame);
+
     if (user && (await compare(pass, user.password))) {
       const { password, ...result } = user;
       return result;
