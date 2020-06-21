@@ -36,8 +36,6 @@ export class ItemDTO implements Readonly<ItemDTO> {
     it.name = this.name;
     it.description = this.description;
     it.createDateTime = new Date();
-    it.createdBy = null;
-    it.lastChangedBy = null;
     return it;
   }
 }

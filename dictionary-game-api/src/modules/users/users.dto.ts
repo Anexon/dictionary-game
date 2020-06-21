@@ -14,11 +14,16 @@ export class UserDTO implements Readonly<UserDTO> {
   @IsString()
   name: string;
 
+  @ApiProperty({ required: true })
+  @IsString()
+  password: string;
+
   public static from(dto: Partial<UserDTO>) {
     const it = new UserDTO();
     it.id = dto.id;
     it.name = dto.name;
     it.email = dto.email;
+    it.password = dto.password;
     return it;
   }
 
@@ -27,6 +32,7 @@ export class UserDTO implements Readonly<UserDTO> {
       id: entity.id,
       name: entity.name,
       email: entity.email,
+      password: entity.password,
     });
   }
 
@@ -35,9 +41,8 @@ export class UserDTO implements Readonly<UserDTO> {
     it.id = this.id;
     it.name = this.name;
     it.email = this.email;
+    it.password = this.password;
     it.createDateTime = new Date();
-    it.createdBy = null;
-    it.lastChangedBy = null;
     return it;
   }
 }
