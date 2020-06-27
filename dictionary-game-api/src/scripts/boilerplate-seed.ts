@@ -7,8 +7,6 @@ import { User } from '../model/user.entity';
 import { UsersService } from '../modules/users/users.service';
 import { UserDTO } from '../modules/users/users.dto';
 
-import { hash } from 'bcrypt';
-
 async function run() {
   const seedId = Date.now()
     .toString()
@@ -24,13 +22,11 @@ async function run() {
   const connection = await createConnection(opt as ConnectionOptions);
   const usersService = new UsersService(connection.getRepository(User));
 
-  const hashedPassword = await hash('prueba', 10);
-
   const work = usersService.create(
     UserDTO.from({
       name: 'Rubén',
-      email: 'raxanon@gmail.com',
-      password: hashedPassword,
+      email: 'raxanon3@gmail.com',
+      password: 'prueba',
     }),
   );
   return await work;
